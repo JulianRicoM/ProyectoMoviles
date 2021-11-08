@@ -31,11 +31,28 @@
 
             android:id="@+id/recycler_task_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="510dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            app:layout_column="0"
+            app:layout_row="0">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_task"
+            android:textStyle="bold"
+            app:layout_column="0"
+            android:layout_margin="15dp"
+            app:layout_row="1"
+            android:onClick="browse_create_task">
+
+        </Button>
+
 
     </androidx.gridlayout.widget.GridLayout>
 

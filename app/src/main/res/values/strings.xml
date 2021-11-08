@@ -4,4 +4,8 @@
     <string name="car_reminders"> Recordatorios </string>
     <string name="car_settings"> Configuración </string>
     <string name="car_profile"> Perfil </string>
+    <string name="task_name">Nombre:</string>
+    <string name="description_task">Descripción</string>
+    <string name="add_task">Añadir tarea</string>
+
 </resources>
