@@ -96,7 +96,7 @@ public class Register_activity extends AppCompatActivity implements View.OnClick
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             User user = new User(name, email);
-                            db.collection("Users").
+                            db.collection("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
