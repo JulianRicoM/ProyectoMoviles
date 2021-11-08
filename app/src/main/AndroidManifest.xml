@@ -33,6 +33,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity android:name=".Login_activity" />
+        <activity android:name=".Register_activity" />
+        <activity android:name=".Forgotpassword_activity" />
+        <activity android:name=".MainOptions" />
     </application>
 
 </manifest>

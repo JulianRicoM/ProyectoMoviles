@@ -18,7 +18,7 @@ public class Splash_screen extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_screen.this, MainActivity.class);
+                Intent intent = new Intent(Splash_screen.this, MainOptions.class);
                 startActivity(intent);
                 finish();
             }
