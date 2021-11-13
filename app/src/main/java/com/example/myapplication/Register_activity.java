@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register_activity extends AppCompatActivity implements View.OnClickListener{
 
@@ -95,23 +102,27 @@ public class Register_activity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(name, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(Register_activity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
-                                        //progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(Register_activity.this, Login_activity.class));
-                                        // Redirect to login layout
-                                    } else {
-                                        Toast.makeText(Register_activity.this, "Failed to register, try again", Toast.LENGTH_SHORT).show();
-                                        //progressBar.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
+
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("name", name);
+                            user.put("email", email);
+
+                            db.collection("users").add(user)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(Register_activity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                            //progressBar.setVisibility(View.GONE);
+                                            startActivity(new Intent(Register_activity.this, Login_activity.class));
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Register_activity.this, "Failed to register, try again", Toast.LENGTH_SHORT).show();
+                                            //progressBar.setVisibility(View.GONE);
+                                        }
+                                    });
                         } else {
                             Toast.makeText(Register_activity.this, "Failed to register, try again", Toast.LENGTH_SHORT).show();
                             // progressBar.setVisibility(View.GONE);
