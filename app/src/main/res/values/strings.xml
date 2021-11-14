@@ -7,5 +7,7 @@
     <string name="task_name">Nombre:</string>
     <string name="description_task">Descripción</string>
     <string name="add_task">Añadir tarea</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

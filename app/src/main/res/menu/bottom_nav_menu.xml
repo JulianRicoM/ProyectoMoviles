@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_notification"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="Notifications" />
+
+    <item
+        android:id="@+id/navigation_task"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="Task" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Account" />
+
+</menu>

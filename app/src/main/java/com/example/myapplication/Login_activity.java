@@ -62,7 +62,7 @@ public class Login_activity extends AppCompatActivity implements View.OnClickLis
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Intent newIntent = new Intent(Login_activity.this, MainActivity.class);
+        Intent newIntent = new Intent(Login_activity.this, MainMenu.class);
     }
 
 
@@ -90,7 +90,7 @@ public class Login_activity extends AppCompatActivity implements View.OnClickLis
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent newIntent = new Intent(Login_activity.this, MainActivity.class);
+                            Intent newIntent = new Intent(Login_activity.this, MainMenu.class);
                             newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(newIntent);
                             finish();
@@ -135,7 +135,7 @@ public class Login_activity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user.isEmailVerified()) {
-                        Intent newIntent = new Intent(Login_activity.this, MainActivity.class);
+                        Intent newIntent = new Intent(Login_activity.this, MainMenu.class);
                         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(newIntent);
                         finish();

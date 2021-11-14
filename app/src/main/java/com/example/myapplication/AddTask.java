@@ -35,7 +35,7 @@ public class AddTask extends AppCompatActivity {
                 elements.add(new List_element("black", name_t, description_t, "Activo", "Alto"));
 
                 Task add = new Task();
-                add.add_task(elements);
+                //add.add_task(elements);
 
                 Intent browse = new Intent(AddTask.this, Task.class);
                 startActivity(browse);

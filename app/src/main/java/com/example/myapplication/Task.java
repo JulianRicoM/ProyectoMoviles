@@ -1,28 +1,30 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task extends AppCompatActivity {
+public class Task extends Fragment implements View.OnClickListener {
 
     List<List_element> elements;
 
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.activity_task, container, false);
 
         task_list();
+        return root;
     }
 
     public void task_list() {
@@ -38,24 +40,23 @@ public class Task extends AppCompatActivity {
         elements.add(new List_element("blue", "Redes neuronales", "proyecto",
                 "Activo", "bajo"));
 
-        ListAdd add = new ListAdd(elements, this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_task_list);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(add);
+
     }
 
-    public void add_task(List<List_element> elements1){
-        ListAdd add = new ListAdd(elements1, this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_task_list);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(add);
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.añadir_tarea:
+                //browse_create_task();
+                break;
+        }
     }
 
-    public void browse_create_task(View v){
-        Intent browse = new Intent(this, AddTask.class);
-        startActivity(browse);
+    public void browse_create_task(){
+
+        Intent intent = new Intent(getActivity(), Reminders.class);
+        startActivity(intent);
     }
 
 }
