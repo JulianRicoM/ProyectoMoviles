@@ -107,10 +107,10 @@ public class Register_activity extends AppCompatActivity implements View.OnClick
                             user.put("name", name);
                             user.put("email", email);
 
-                            db.collection("users").add(user)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
+                                        public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(Register_activity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
                                             //progressBar.setVisibility(View.GONE);
                                             startActivity(new Intent(Register_activity.this, Login_activity.class));
