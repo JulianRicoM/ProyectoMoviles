@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -11,20 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity
-            android:name=".AddTask"
-            android:exported="false" />
-        <activity
-            android:name=".Profile"
-            android:exported="false" />
+
         <activity
             android:name=".Settings"
-            android:exported="false" />
-        <activity
-            android:name=".Reminders"
-            android:exported="false" />
-        <activity
-            android:name=".Task"
             android:exported="false" />
         <activity
             android:name=".Splash_screen"
@@ -37,6 +27,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddTask"
             android:exported="false" />
         <activity android:name=".Login_activity" />
         <activity android:name=".Register_activity" />
