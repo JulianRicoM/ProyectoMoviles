@@ -10,6 +10,13 @@
         <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Demo1.1/app/src/main/res/layout/list_element.xml" value="0.1" />
         <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/MyApplication/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/activity_add_task.xml" value="0.4" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/activity_main_menu.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/activity_splash_screen.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/activity_task.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/list_element.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Julian/Desktop/Univerdidad/Julian/Semestre 8/Dispositivos moviles/Proyecto/ProyectoMoviles/app/src/main/res/layout/list_item_task.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/Sebas/Documents/ProyectoMoviles/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.28" />
         <entry key="..\:/Users/Sebas/Documents/ProyectoMoviles/app/src/main/res/drawable/ic_baseline_list_alt_24.xml" value="0.28" />
         <entry key="..\:/Users/Sebas/Documents/ProyectoMoviles/app/src/main/res/layout/acrivity_main_options.xml" value="0.25833333333333336" />
@@ -26,7 +33,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

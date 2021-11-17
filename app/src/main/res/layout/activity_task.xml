@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Task"
-    android:background="@drawable/background_home">
+    >
 
     <TextView
         android:id="@+id/text_task"
         android:layout_width="match_parent"
-        android:layout_height="136dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="36dp"
         android:textAlignment="center"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/car_task" >
 
     </TextView>
@@ -31,7 +31,7 @@
 
             android:id="@+id/recycler_task_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="430dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             app:layout_column="0"
@@ -44,7 +44,7 @@
             android:id="@+id/añadir_tarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_task"
+            android:text="@string/create_task"
             android:textStyle="bold"
             app:layout_column="0"
             android:layout_margin="15dp"

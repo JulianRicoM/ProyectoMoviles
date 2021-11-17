@@ -26,7 +26,7 @@
 
             <ImageView
 
-                android:id="@+id/iconListTask"
+                android:id="@+id/iconTask"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentStart="true"
@@ -34,8 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
-                android:paddingRight="14dp"
-                app:srcCompat="@drawable/icon_list_task2">
+                android:paddingRight="14dp">
 
             </ImageView>
             
@@ -46,10 +45,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:layout_toEndOf="@+id/iconListTask"
+                android:layout_toEndOf="@+id/iconTask"
                 android:orientation="vertical"
                 android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/iconListTask">
+                android:layout_toRightOf="@+id/iconTask">
 
                 <TextView
 
