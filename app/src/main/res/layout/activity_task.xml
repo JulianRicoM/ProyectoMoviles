@@ -7,25 +7,12 @@
     tools:context=".Task"
     >
 
-    <TextView
-        android:id="@+id/text_task"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="36dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:text="@string/car_task" >
 
-    </TextView>
 
     <androidx.gridlayout.widget.GridLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/text_task">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
 
