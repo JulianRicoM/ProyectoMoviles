@@ -1,13 +1,14 @@
 package com.example.myapplication;
 
 public class User {
-    public String name, email;
+    public String name, email, photo;
 
     public  User(){}
 
-    public User(String name, String email){
+    public User(String name, String email, String photo){
         this.name = name;
         this.email = email;
+        this.photo = photo;
     }
 
     public String getName(){
