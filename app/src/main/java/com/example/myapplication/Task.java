@@ -76,13 +76,13 @@ public class Task extends Fragment {
         elements =  new ArrayList<>();
 
         elements.add(new List_element(R.drawable.alerta, "Dispositivos moviles", "proyecto",
-                true, "Alto"));
+                true, "Alto", ""));
 
         elements.add(new List_element(R.drawable.alerta, "Dispositivos moviles", "talle",
-                false, "Medio"));
+                false, "Medio", ""));
 
         elements.add(new List_element(R.drawable.alerta, "Redes neuronales", "proyecto",
-                true, "bajo"));
+                true, "bajo", ""));
 
         return elements;
 

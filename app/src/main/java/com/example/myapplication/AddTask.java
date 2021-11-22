@@ -88,12 +88,12 @@ public class AddTask extends AppCompatActivity {
                 String name_t = name_task.getText().toString();
                 String description_t = description_task.getText().toString();
 
-                List<List_element> elements = new ArrayList<>();
+                /*List<List_element> elements = new ArrayList<>();
 
                 elements.add(new List_element(R.drawable.alerta, name_t, description_t, true, "Alto"));
 
                 Task add = new Task();
-                //add.add_task(elements);
+                //add.add_task(elements);*/
 
                 Intent browse = new Intent(AddTask.this, Task.class);
                 startActivity(browse);
