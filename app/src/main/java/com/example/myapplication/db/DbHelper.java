@@ -22,7 +22,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TASK + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "idImagen INTEGER NOT NULL," +
                 "nombre TEXT NOT NULL," +
                 "descripcion TEXT NOT NULL," +
                 "fecha TEXT NOT NULL," +

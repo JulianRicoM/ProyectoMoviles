@@ -82,6 +82,9 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
             }else{
                 status.setText("Inactivo");
             }
+
+
+
         }
 
         public void change_status(final List_element item){

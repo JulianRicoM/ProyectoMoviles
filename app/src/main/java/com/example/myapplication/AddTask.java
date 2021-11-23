@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import com.example.myapplication.db.DbHelper;
@@ -47,13 +47,13 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
         //<<--------------PRUEBAS-------------------->>
         register_task_name = findViewById(R.id.register_task_name);
-        autoCompleteItems = findViewById(R.id.autoCompleteItems);
+        autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_task = findViewById(R.id.register_description_task);
         register_date_task = findViewById(R.id.register_date_task);
 
         //<<-------------------------------- Dropdown -------------------------------->>
 
-        autoCompleteItems = findViewById(R.id.autoCompleteItems);
+        autoCompleteItems = findViewById(R.id.Dropdown);
 
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item_task, items);
         autoCompleteItems.setAdapter(adapterItems);
@@ -106,8 +106,6 @@ public class AddTask extends AppCompatActivity {
                 } else {
                     Toast.makeText(AddTask.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
                 }
-
-                //switch (String.valueOf(autoCompleteItems).getText())
 
 
                 DbTask dbTask = new DbTask(AddTask.this);

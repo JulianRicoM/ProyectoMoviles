@@ -61,11 +61,10 @@ public class DbTask extends DbHelper {
             do{
                 list_element = new List_element();
                 list_element.setId(cursorETask.getInt(0));
-                list_element.setImageId(cursorETask.getInt(1));
-                list_element.setName(cursorETask.getString(2));
-                list_element.setDescription(cursorETask.getString(3));
-                list_element.setFecha(cursorETask.getString(4));
-                list_element.setType_task(cursorETask.getString(5));
+                list_element.setName(cursorETask.getString(1));
+                list_element.setDescription(cursorETask.getString(2));
+                list_element.setFecha(cursorETask.getString(3));
+                list_element.setType_task(cursorETask.getString(4));
                 list_element.setStatus(true);
 
                 listaTask.add(list_element);
