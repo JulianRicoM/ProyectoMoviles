@@ -1,8 +1,12 @@
 package com.example.myapplication;
 
+import android.app.DatePickerDialog;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class List_element implements Serializable {
+
 
     private int id;
     private int imageId;
@@ -16,12 +20,14 @@ public class List_element implements Serializable {
                          String type_task, String fecha) {
 
         this.id = id;
+
         this.imageId = imageId;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type_task = type_task;
         this.fecha = fecha;
+
     }
 
     public List_element() {
@@ -33,6 +39,7 @@ public class List_element implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+
     }
 
     public int getImageId() {

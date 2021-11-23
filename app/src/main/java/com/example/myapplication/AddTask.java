@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 
 import com.example.myapplication.db.DbHelper;
@@ -109,6 +109,7 @@ public class AddTask extends AppCompatActivity {
 
                 //switch (String.valueOf(autoCompleteItems).getText())
 
+
                 DbTask dbTask = new DbTask(AddTask.this);
                 long id = dbTask.insertarTask(String.valueOf(register_task_name.getText()),
                         String.valueOf(register_description_task.getText()),
@@ -116,12 +117,7 @@ public class AddTask extends AppCompatActivity {
                         String.valueOf(autoCompleteItems.getText()));
 
 
-                if(id > 0){
-                    Toast.makeText(AddTask.this,"Registro guardado", Toast.LENGTH_LONG).show();
-                    limpiar();
-                }else{
-                    Toast.makeText(AddTask.this,"Erroral guardar Registro ", Toast.LENGTH_LONG).show();
-                }
+
 
             }
         });

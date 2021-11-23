@@ -102,12 +102,13 @@ public class Register_activity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
+                            String uid =FirebaseAuth.getInstance().getCurrentUser().getUid();
                             Map<String, Object> user = new HashMap<>();
                             user.put("name", name);
                             user.put("email", email);
+                            user.put("photo", "default.png");
 
-                            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(user)
+                            db.collection("users").document(uid).set(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

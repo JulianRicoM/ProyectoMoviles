@@ -7,31 +7,19 @@
     tools:context=".Task"
     >
 
-    <TextView
-        android:id="@+id/text_task"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="36dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:text="@string/car_task" >
-
-    </TextView>
 
     <androidx.gridlayout.widget.GridLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/text_task">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <androidx.recyclerview.widget.RecyclerView
 
             android:id="@+id/recycler_task_list"
             android:layout_width="match_parent"
-            android:layout_height="430dp"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             app:layout_column="0"
@@ -39,23 +27,24 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-
-            android:id="@+id/añadir_tarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/create_task"
-            android:textStyle="bold"
-            app:layout_column="0"
-            android:layout_margin="15dp"
-            android:layout_marginBottom="15dp"
-            app:layout_row="1"
-            android:onClick="browse_create_task">
-
-        </Button>
-
 
     </androidx.gridlayout.widget.GridLayout>
+
+    <Button
+
+        android:id="@+id/añadir_tarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="browse_create_task"
+        android:text="@string/create_task"
+        android:textStyle="bold">
+
+    </Button>
 
 
 </RelativeLayout>
