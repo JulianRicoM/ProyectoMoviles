@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.example.myapplication.db.DbHelper;
+import com.example.myapplication.db.DbTask;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -42,11 +45,11 @@ public class Task extends Fragment {
                 startActivity(newIntent);
             }
         });
-
+        DbTask prueba = new DbTask(getActivity());
         elements1 = new ArrayList<>();
-        elements1= task_list();
+        elements1= prueba.mostrarTask();
 
-        ListAdd listAdapter =  new ListAdd(elements, getActivity(), new ListAdd.OnItemClickListener() {
+        ListAdd listAdapter =  new ListAdd(elements1, getActivity(), new ListAdd.OnItemClickListener() {
             @Override
             public void onItemClick(List_element item) {
                 change_status(item);
@@ -75,14 +78,6 @@ public class Task extends Fragment {
 
         elements =  new ArrayList<>();
 
-        elements.add(new List_element(R.drawable.alerta, "Dispositivos moviles", "proyecto",
-                true, "Alto"));
-
-        elements.add(new List_element(R.drawable.alerta, "Dispositivos moviles", "talle",
-                false, "Medio"));
-
-        elements.add(new List_element(R.drawable.alerta, "Redes neuronales", "proyecto",
-                true, "bajo"));
 
         return elements;
 
