@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,10 +17,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+
+import com.example.myapplication.db.DbHelper;
+import com.example.myapplication.db.DbTask;
+
+import java.util.ArrayList;
+
 import java.util.Calendar;
 
 
 public class AddTask extends AppCompatActivity {
+
+    Button btn;
+
+    EditText register_task_name,register_description_task,register_date_task;
 
     //<<---------------- Dropdown ---------------->>
     AutoCompleteTextView autoCompleteItems;
@@ -33,8 +45,13 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+        //<<--------------PRUEBAS-------------------->>
+        register_task_name = findViewById(R.id.register_task_name);
+        autoCompleteItems = findViewById(R.id.autoCompleteItems);
+        register_description_task = findViewById(R.id.register_description_task);
+        register_date_task = findViewById(R.id.register_date_task);
 
-        //<<---------------- Dropdown ---------------->>
+        //<<-------------------------------- Dropdown -------------------------------->>
 
         autoCompleteItems = findViewById(R.id.autoCompleteItems);
 
@@ -48,7 +65,7 @@ public class AddTask extends AppCompatActivity {
             }
         });
 
-        //<<---------------- Calendar ---------------- >>
+        //<<-------------------------------- Calendar -------------------------------->>
 
         task_date = findViewById(R.id.register_date_task);
 
@@ -73,29 +90,42 @@ public class AddTask extends AppCompatActivity {
             }
         });
 
+        //<<-------------------------------- Btn_add_task -------------------------------->>
 
-        Button btn = findViewById(R.id.btn_add_task);
+
+        btn = findViewById(R.id.btn_add_task);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                DbHelper dbHelper = new DbHelper(AddTask.this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                if (db != null) {
+                    Toast.makeText(AddTask.this, "BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
 
-                EditText name_task = findViewById(R.id.register_task_name);
-                EditText description_task =findViewById(R.id.register_description_task);
+                } else {
+                    Toast.makeText(AddTask.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
+                }
 
-                String name_t = name_task.getText().toString();
-                String description_t = description_task.getText().toString();
+                //switch (String.valueOf(autoCompleteItems).getText())
 
-                /*List<List_element> elements = new ArrayList<>();
 
-                elements.add(new List_element(R.drawable.alerta, name_t, description_t, true, "Alto"));
+                DbTask dbTask = new DbTask(AddTask.this);
+                long id = dbTask.insertarTask(String.valueOf(register_task_name.getText()),
+                        String.valueOf(register_description_task.getText()),
+                        String.valueOf(task_date.getText()),
+                        String.valueOf(autoCompleteItems.getText()));
 
-                Task add = new Task();
-                //add.add_task(elements);*/
 
-                Intent browse = new Intent(AddTask.this, Task.class);
-                startActivity(browse);
+
+
             }
         });
+    }
+
+    private void limpiar(){
+        register_task_name.setText("");
+        register_description_task.setText("");
+        register_date_task.setText("");
     }
 }
