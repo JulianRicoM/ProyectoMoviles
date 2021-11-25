@@ -65,7 +65,7 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
         }
 
         public void bindData (final List_element item){
-            iconImage.setImageResource(item.getImageId());
+
             name.setText(item.getName());
             description.setText(item.getDescription());
 
@@ -77,11 +77,29 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
                 }
             });
 
+            //<<----------------------------- assign the status ------------------------------>>
+
             if(item.getStatus()){
                 status.setText("Activo");
             }else{
                 status.setText("Inactivo");
             }
+
+            //<<----------------------------- assign the image ------------------------------>>
+
+            switch (item.getType_task()){
+
+                case "Urgente":
+                    iconImage.setImageResource(R.drawable.urgente);
+                    break;
+                case "Deseable":
+                    iconImage.setImageResource(R.drawable.deseable);
+                    break;
+                case "Prorrogable":
+                    iconImage.setImageResource(R.drawable.prorrogable);
+                    break;
+            }
+
         }
 
         public void change_status(final List_element item){
