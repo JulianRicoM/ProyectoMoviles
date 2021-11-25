@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,10 +25,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class Profile extends Fragment {
@@ -75,14 +81,13 @@ public class Profile extends Fragment {
                 db.collection("users").document(userID).update(
                   "photo", userID
                 );
-                StorageReference fileReference = mStorage.getReference().child(userID);
+                StorageReference fileReference = mStorage.getReference().child("pictures/"+userID+".jpeg");
                 fileReference.putFile(mImageUri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
                                 Toast.makeText(getActivity(), "Photo upload successfully", Toast.LENGTH_LONG).show();
+                                btnSave.setVisibility(View.INVISIBLE);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -110,13 +115,36 @@ public class Profile extends Fragment {
                             String email = user.email;
                             String photo = user.photo;
 
-                            String IMAGE_URL = "gs://proyecto-app-moviles-907c3.appspot.com/a7iaicycPnY6RVF0wLxo7QinYXu2";
-                            //String IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/proyecto-app-moviles-907c3.appspot.com/o/a7iaicycPnY6RVF0wLxo7QinYXu2?alt=media&token=adafb2df-6c5b-4eb3-9ea1-3029be4cfde8";
-                            StorageReference gsReference = mStorage.getReferenceFromUrl("gs://proyecto-app-moviles-907c3.appspot.com/");
-                            //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/proyecto-app-moviles-907c3.appspot.com/o/a7iaicycPnY6RVF0wLxo7QinYXu2.jpg?alt=media&token=19233614-fb69-447b-9426-bc46124907d2").into(mImageView);
-                            Glide.with(mImageView.getContext()).load(IMAGE_URL).into(mImageView);
                             fullNameTextView.setText(fullName);
                             emailTextView.setText(email);
+
+                            StorageReference mStorageReference = FirebaseStorage.getInstance().getReference().child("pictures/" +photo+".jpeg");
+
+                            try {
+                                final File localFile = File.createTempFile(photo,"jpeg");
+                                mStorageReference.getFile(localFile)
+                                        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+
+                                                mImageView.setImageBitmap(bitmap); }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+
+                            //String IMAGE_URL = "gs://proyecto-app-moviles-907c3.appspot.com/a7iaicycPnY6RVF0wLxo7QinYXu2";
+                            //String IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/proyecto-app-moviles-907c3.appspot.com/o/a7iaicycPnY6RVF0wLxo7QinYXu2?alt=media&token=adafb2df-6c5b-4eb3-9ea1-3029be4cfde8";
+                            //StorageReference gsReference = mStorage.getReferenceFromUrl("gs://proyecto-app-moviles-907c3.appspot.com/");
+                            //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/proyecto-app-moviles-907c3.appspot.com/o/a7iaicycPnY6RVF0wLxo7QinYXu2.jpg?alt=media&token=19233614-fb69-447b-9426-bc46124907d2").into(mImageView);
+                            //Glide.with(mImageView.getContext()).load(IMAGE_URL).into(mImageView);
+
                     }
                 });
         return root;

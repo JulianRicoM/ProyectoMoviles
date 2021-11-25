@@ -106,7 +106,7 @@ public class Register_activity extends AppCompatActivity implements View.OnClick
                             Map<String, Object> user = new HashMap<>();
                             user.put("name", name);
                             user.put("email", email);
-                            user.put("photo", "default.png");
+                            user.put("photo", "default");
 
                             db.collection("users").document(uid).set(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
