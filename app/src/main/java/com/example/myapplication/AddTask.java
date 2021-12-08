@@ -45,7 +45,7 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-        //<<--------------PRUEBAS-------------------->>
+        //<<-------------------- interface values assignment ------------------------->>
         register_task_name = findViewById(R.id.register_task_name);
         autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_task = findViewById(R.id.register_description_task);
@@ -101,7 +101,7 @@ public class AddTask extends AppCompatActivity {
                 DbHelper dbHelper = new DbHelper(AddTask.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 if (db != null) {
-                    Toast.makeText(AddTask.this, "BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddTask.this, "TAREA CREADA CON EXITO", Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(AddTask.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
@@ -114,9 +114,8 @@ public class AddTask extends AppCompatActivity {
                         String.valueOf(task_date.getText()),
                         String.valueOf(autoCompleteItems.getText()));
 
-
-
-
+                Intent browse = new Intent(AddTask.this, Task.class);
+                startActivity(browse);
             }
         });
     }

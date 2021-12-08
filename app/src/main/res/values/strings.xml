@@ -10,7 +10,7 @@
     <string name="date_task">Date</string>
     <string name="create_task">Create task</string>
     <string name="add_task">Add task</string>
-    
+
     <string-array name="type_task">
         <item>Prorrogable</item>
         <item>Deseable</item>

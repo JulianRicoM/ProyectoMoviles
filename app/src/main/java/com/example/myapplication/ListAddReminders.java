@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.content.Context;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
+public class ListAddReminders extends RecyclerView.Adapter<ListAddReminders.ViewHolder> {
 
-    private List<List_element> list_data;
+    private List<List_element_reminders> list_data;
     private LayoutInflater inflater;
     private Context context;
-    final ListAdd.OnItemLongClickListener listener;
+    final ListAddReminders.OnItemLongClickListener listener;
 
-
-
-    public interface OnItemLongClickListener{
-        void onLongClick(List_element item);
+    public interface OnItemLongClickListener {
+        void onItemClick(List_element_reminders item);
     }
 
-    public ListAdd(List<List_element> items_list, Context context, ListAdd.OnItemLongClickListener listener){
+    public ListAddReminders(List<List_element_reminders> items_list, Context context,
+                            ListAddReminders.OnItemLongClickListener listener) {
 
         this.inflater = LayoutInflater.from(context);
         this.context = context;
@@ -36,29 +34,31 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
     }
 
     @Override
-    public int getItemCount() { return list_data.size(); }
+    public int getItemCount() {
+        return list_data.size();
+    }
 
 
-    public  ListAdd.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ListAddReminders.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.list_element, null);
-        return new ListAdd.ViewHolder(view);
+        return new ListAddReminders.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ListAdd.ViewHolder holder, final int position){
+    public void onBindViewHolder(final ListAddReminders.ViewHolder holder, final int position) {
         holder.bindData(list_data.get(position));
     }
 
-    public void setItems(List<List_element> items) {
+    public void setItems(List<List_element_reminders> items) {
         list_data = items;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iconImage;
         TextView name, description, status;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconTask);
             name = itemView.findViewById(R.id.name_task);
@@ -67,10 +67,10 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
         }
 
-        public void bindData (final List_element item){
+        public void bindData(final List_element_reminders item) {
 
-            name.setText(item.getName());
-            description.setText(item.getDescription());
+            name.setText(item.getName_reminder());
+            description.setText(item.getDescription_reminder());
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -82,24 +82,21 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    return true;
+                    return false;
                 }
             });
 
+            //<<----------------------------- assign status ------------------------------>>
 
-
-
-            //<<----------------------------- assign the status ------------------------------>>
-
-            if(item.getStatus()){
+            if (item.getStatus_reminder()) {
                 status.setText("Activo");
-            }else{
+            } else {
                 status.setText("Inactivo");
             }
 
-            //<<----------------------------- assign the image ------------------------------>>
+            //<<----------------------------- assign image ------------------------------>>
 
-            switch (item.getType_task()){
+            switch (item.getType_reminder()) {
 
                 case "Urgente":
                     iconImage.setImageResource(R.drawable.urgente);
@@ -114,10 +111,12 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
         }
 
-        public void change_status(final List_element item){
-            if(item.getStatus()){
+        //<<-------------------------------- assign status text----------------------------->>
+
+        public void change_status(final List_element_reminders item) {
+            if (item.getStatus_reminder()) {
                 status.setText("Activo");
-            }else{
+            } else {
                 status.setText("Inactivo");
             }
         }
