@@ -12,6 +12,10 @@ public class List_element_reminders implements Serializable {
     private String fecha_reminder;
     private String type_reminder;
 
+    public List_element_reminders(){
+
+    }
+
     public List_element_reminders(int id_reminder, int image_reminder, String name_reminder,
                                   String description_reminder, Boolean status, String fecha,
                                   String type_reminder) {

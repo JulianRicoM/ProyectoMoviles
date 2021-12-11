@@ -7,28 +7,30 @@
     tools:context=".Task"
     >
 
-
-    <androidx.gridlayout.widget.GridLayout
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="match_parent">
+        <androidx.gridlayout.widget.GridLayout
 
-        <androidx.recyclerview.widget.RecyclerView
-
-            android:id="@+id/recycler_reminder_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            app:layout_column="0"
-            app:layout_row="0">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
 
+                android:id="@+id/recycler_reminder_list"
+                android:layout_width="match_parent"
+                android:layout_height="616dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                app:layout_column="0"
+                app:layout_row="0">
 
-    </androidx.gridlayout.widget.GridLayout>
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.gridlayout.widget.GridLayout>
+    </ScrollView>
 
     <Button
 

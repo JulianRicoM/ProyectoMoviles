@@ -100,12 +100,12 @@ public class AddTask extends AppCompatActivity {
             public void onClick(View view) {
                 DbHelper dbHelper = new DbHelper(AddTask.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                if (db != null) {
+                /*if (db != null) {
                     Toast.makeText(AddTask.this, "TAREA CREADA CON EXITO", Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(AddTask.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
-                }
+                }*/
 
 
                 DbTask dbTask = new DbTask(AddTask.this);
@@ -114,8 +114,8 @@ public class AddTask extends AppCompatActivity {
                         String.valueOf(task_date.getText()),
                         String.valueOf(autoCompleteItems.getText()));
 
-                Intent browse = new Intent(AddTask.this, Task.class);
-                startActivity(browse);
+                onBackPressed();
+
             }
         });
     }

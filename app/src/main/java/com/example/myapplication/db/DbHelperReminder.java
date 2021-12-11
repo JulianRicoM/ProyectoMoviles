@@ -6,33 +6,31 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DbHelper extends SQLiteOpenHelper {
+public class DbHelperReminder extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_NOMBRE = "task.db";
-    public static final String TABLE_TASK = "t_task";
+    private static final String DATABASE_NOMBRE = "reminder.db";
+    public static final String TABLE_REMINDER = "t_reminder";
 
 
-    public DbHelper(@Nullable Context context) {
+    public DbHelperReminder(@Nullable Context context) {
         super(context, DATABASE_NOMBRE,null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TASK + "(" +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_REMINDER + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
                 "descripcion TEXT NOT NULL," +
                 "fecha TEXT NOT NULL," +
                 "typeTask TEXT NOT NULL)");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_TASK);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_REMINDER);
         onCreate(sqLiteDatabase);
     }
-
 }
