@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    android:orientation="vertical"
+    tools:context=".VerActivity">
+
+
+    
+
+
+	<ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center"
+        android:src="@drawable/registro">
+
+    </ImageView>
+
+
+    <TextView
+        android:id="@+id/viewTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_name"/>
+
+    <EditText
+
+        android:id="@+id/register_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:labelFor="@+id/viewTaskName"
+        android:layout_marginBottom="20dp">
+
+
+    </EditText>
+
+
+
+    <TextView
+        android:id="@+id/viewTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_task"/>
+
+    <EditText
+
+        android:id="@+id/register_description_task"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:labelFor="@+id/viewTaskDescription"
+        android:layout_marginBottom="20dp">
+
+    </EditText>
+
+    <EditText
+
+        android:id="@+id/register_date_task"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/date_task"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:layout_marginBottom="20dp">
+
+    </EditText>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <AutoCompleteTextView
+
+            android:id="@+id/Dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="type task"
+            android:inputType="none" >
+
+        </AutoCompleteTextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+
+        android:id="@+id/btn_add_task"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/add_task"
+        android:textStyle="bold">
+
+    </Button>
+
+</LinearLayout>

@@ -76,4 +76,36 @@ public class DbTask extends DbHelper {
 
         return listaTask;
     }
+
+
+
+    public List_element verTask(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+
+        List_element list_element = null;
+        Cursor cursorETask = null;
+
+        cursorETask = db.rawQuery("SELECT * FROM " + TABLE_TASK + " WHERE id = " + id + " LIMIT 1", null);
+
+        if(cursorETask.moveToFirst()){
+
+            list_element = new List_element();
+            list_element.setId(cursorETask.getInt(0));
+            list_element.setName(cursorETask.getString(1));
+            list_element.setDescription(cursorETask.getString(2));
+            list_element.setFecha(cursorETask.getString(3));
+            list_element.setType_task(cursorETask.getString(4));
+            list_element.setStatus(true);
+
+
+
+
+        }
+
+        cursorETask.close();
+
+        return list_element;
+    }
 }
