@@ -13,6 +13,7 @@
     <string name="add_reminder">Add reminder</string>
     <string name="reminder_name">Name</string>
     <string name="description_reminder">Description</string>
+    <string name="editar">Edit task</string>
 
 
     <string-array name="type_task">

@@ -25,9 +25,7 @@ public class DbTask extends DbHelper {
 
 
     public long insertarTask(String nombre, String descripcion, String fecha, String typeTask){
-
         long id = 0;
-
         try {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -46,6 +44,11 @@ public class DbTask extends DbHelper {
 
         return id;
     }
+
+
+
+
+
 
     public ArrayList<List_element> mostrarTask(){
         DbHelper dbHelper = new DbHelper(context);
@@ -108,4 +111,26 @@ public class DbTask extends DbHelper {
 
         return list_element;
     }
+
+
+
+    public boolean editarTask(int id,String nombre, String descripcion, String fecha, String typeTask){
+        boolean correcto = false;
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+
+
+            db.execSQL(" UPDATE " + TABLE_TASK + " SET nombre = '"+nombre+"',descripcion = '"+descripcion+"',fecha = '"+fecha+"',typeTask = '"+typeTask+"' WHERE id='"+id+"' ");
+            correcto = true;
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
 }
