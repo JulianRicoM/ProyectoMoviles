@@ -62,7 +62,7 @@
 
         <AutoCompleteTextView
 
-            android:id="@+id/Dropdown_reminder"
+            android:id="@+id/Dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="type reminder"

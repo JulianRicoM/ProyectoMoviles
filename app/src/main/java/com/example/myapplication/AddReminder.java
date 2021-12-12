@@ -53,13 +53,13 @@ public class AddReminder extends AppCompatActivity {
 
         //<<-------------------- interface values assignment ------------------------->>
         register_reminder_name = findViewById(R.id.register_reminder_name);
-        autoCompleteItems = findViewById(R.id.Dropdown_reminder);
+        autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_reminder = findViewById(R.id.register_description_reminder);
         register_date_reminder = findViewById(R.id.register_date_reminder);
 
         //<<-------------------------------- Dropdown -------------------------------->>
 
-        autoCompleteItems = findViewById(R.id.Dropdown_reminder);
+        autoCompleteItems = findViewById(R.id.Dropdown);
 
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item_task, items);
         autoCompleteItems.setAdapter(adapterItems);
@@ -68,6 +68,7 @@ public class AddReminder extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
+                Log.d("ejemplo", item);
             }
         });
 
@@ -121,8 +122,7 @@ public class AddReminder extends AppCompatActivity {
                         String.valueOf(reminder_date.getText()),
                         String.valueOf(autoCompleteItems.getText()));
 
-
-
+                onBackPressed();
                 //Intent browse = new Intent(AddReminder.this, Reminders.class);
                 //startActivity(browse);
 

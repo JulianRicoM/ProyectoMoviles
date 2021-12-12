@@ -83,14 +83,5 @@ public class Task extends Fragment {
         }
     }
 
-    public List<List_element> task_list() {
-
-        elements =  new ArrayList<>();
-
-
-        return elements;
-
-    }
-
 
 }

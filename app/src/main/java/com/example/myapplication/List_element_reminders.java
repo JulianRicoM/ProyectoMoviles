@@ -17,15 +17,15 @@ public class List_element_reminders implements Serializable {
     }
 
     public List_element_reminders(int id_reminder, int image_reminder, String name_reminder,
-                                  String description_reminder, Boolean status, String fecha,
+                                  String description_reminder, Boolean status_reminder, String fecha_reminder,
                                   String type_reminder) {
 
         this.id_reminder = id_reminder;
         this.image_reminder = image_reminder;
         this.name_reminder = name_reminder;
         this.description_reminder = description_reminder;
-        this.status_reminder = status;
-        this.fecha_reminder = fecha;
+        this.status_reminder = status_reminder;
+        this.fecha_reminder = fecha_reminder;
         this.type_reminder = type_reminder;
     }
 

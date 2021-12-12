@@ -26,7 +26,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "descripcion TEXT NOT NULL," +
                 "fecha TEXT NOT NULL," +
                 "typeTask TEXT NOT NULL)");
-
     }
 
     @Override

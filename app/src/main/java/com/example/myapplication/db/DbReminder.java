@@ -49,7 +49,7 @@ public class DbReminder extends DbHelperReminder {
     }
 
     public ArrayList<List_element_reminders> mostrarReminder(){
-        DbHelper dbHelper = new DbHelper(context);
+        DbHelperReminder dbHelper = new DbHelperReminder(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<List_element_reminders> listaReminder = new ArrayList<>();
@@ -64,8 +64,8 @@ public class DbReminder extends DbHelperReminder {
                 list_element.setId_reminder(cursorEReminder.getInt(0));
                 list_element.setName_reminder(cursorEReminder.getString(1));
                 list_element.setDescription_reminder(cursorEReminder.getString(2));
-                list_element.setFecha_reminder(cursorEReminder.getString(4));
-                list_element.setType_reminder(cursorEReminder.getString(5));
+                list_element.setFecha_reminder(cursorEReminder.getString(3));
+                list_element.setType_reminder(cursorEReminder.getString(4));
                 list_element.setStatus_reminder(true);
 
                 listaReminder.add(list_element);
