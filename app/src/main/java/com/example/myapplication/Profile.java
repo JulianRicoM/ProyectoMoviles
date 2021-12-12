@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -48,6 +49,7 @@ public class Profile extends Fragment {
     private static final int CAMERA_REQUEST = 1888;
     ImageView mImageView;
     private Uri mImageUri;
+    private Bitmap imageBitmap;
     FirebaseStorage mStorage = FirebaseStorage.getInstance("gs://proyecto-app-moviles-907c3.appspot.com");
 
 
@@ -82,6 +84,7 @@ public class Profile extends Fragment {
                 else {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
                 }
             }
         });
@@ -180,6 +183,8 @@ public class Profile extends Fragment {
         return root;
 
     }
+
+
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -195,8 +200,11 @@ public class Profile extends Fragment {
                 && data != null && data.getData() != null){
             mImageUri = data.getData();
             mImageView.setImageURI(mImageUri);
-
-
+        }
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
         }
     }
 
