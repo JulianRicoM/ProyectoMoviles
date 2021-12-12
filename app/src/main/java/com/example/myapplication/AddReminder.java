@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -16,21 +17,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.example.myapplication.db.DbHelper;
-import com.example.myapplication.db.DbTask;
+import com.example.myapplication.db.DbHelperReminder;
+import com.example.myapplication.db.DbReminder;
 
-import java.util.ArrayList;
 
 import java.util.Calendar;
 
-
-public class AddTask extends AppCompatActivity {
+public class AddReminder extends AppCompatActivity {
 
     Button btn;
 
-    EditText register_task_name,register_description_task,register_date_task;
+    EditText register_reminder_name,register_description_reminder,register_date_reminder;
 
     //<<---------------- Dropdown ---------------->>
     AutoCompleteTextView autoCompleteItems;
@@ -38,22 +42,24 @@ public class AddTask extends AppCompatActivity {
     String[] items = {"Prorrogable", "Deseable", "Urgente"};
 
     //<<---------------- Calendar ---------------- >>
-    TextView task_date;
+    TextView reminder_date;
     DatePickerDialog.OnDateSetListener setListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
+        setContentView(R.layout.activity_add_reminder);
+
         //<<-------------------- interface values assignment ------------------------->>
-        register_task_name = findViewById(R.id.register_task_name);
-        autoCompleteItems = findViewById(R.id.Dropdown);
-        register_description_task = findViewById(R.id.register_description_task);
-        register_date_task = findViewById(R.id.register_date_task);
+        register_reminder_name = findViewById(R.id.register_reminder_name);
+        autoCompleteItems = findViewById(R.id.Dropdown_reminder);
+        register_description_reminder = findViewById(R.id.register_description_reminder);
+        register_date_reminder = findViewById(R.id.register_date_reminder);
 
         //<<-------------------------------- Dropdown -------------------------------->>
 
-        autoCompleteItems = findViewById(R.id.Dropdown);
+        autoCompleteItems = findViewById(R.id.Dropdown_reminder);
 
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item_task, items);
         autoCompleteItems.setAdapter(adapterItems);
@@ -67,62 +73,66 @@ public class AddTask extends AppCompatActivity {
 
         //<<-------------------------------- Calendar -------------------------------->>
 
-        task_date = findViewById(R.id.register_date_task);
+        reminder_date = findViewById(R.id.register_date_reminder);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        task_date.setOnClickListener(new View.OnClickListener() {
+        reminder_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddTask.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminder.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
                                 month = month + 1;
                                 String date = day + "/" + month + "/" + year;
-                                task_date.setText(date);
+                                reminder_date.setText(date);
                             }
                         }, year, month, day);
                 datePickerDialog.show();
             }
         });
 
+
         //<<-------------------------------- Btn_add_task -------------------------------->>
 
 
-        btn = findViewById(R.id.btn_add_task);
+        btn = findViewById(R.id.btn_add_reminder);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbHelper dbHelper = new DbHelper(AddTask.this);
+                DbHelperReminder dbHelper = new DbHelperReminder(AddReminder.this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 /*if (db != null) {
-                    Toast.makeText(AddTask.this, "TAREA CREADA CON EXITO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddReminder.this, "TAREA CREADA CON EXITO", Toast.LENGTH_LONG).show();
 
                 } else {
-                    Toast.makeText(AddTask.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddReminder.this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_LONG).show();
                 }*/
 
 
-                DbTask dbTask = new DbTask(AddTask.this);
-                long id = dbTask.insertarTask(String.valueOf(register_task_name.getText()),
-                        String.valueOf(register_description_task.getText()),
-                        String.valueOf(task_date.getText()),
+                DbReminder dbReminder = new DbReminder(AddReminder.this);
+                long id = dbReminder.insertarReminder(String.valueOf(register_reminder_name.getText()),
+                        String.valueOf(register_description_reminder.getText()),
+                        String.valueOf(reminder_date.getText()),
                         String.valueOf(autoCompleteItems.getText()));
 
-                onBackPressed();
+
+
+                //Intent browse = new Intent(AddReminder.this, Reminders.class);
+                //startActivity(browse);
 
             }
         });
-    }
 
+    }
     private void limpiar(){
-        register_task_name.setText("");
-        register_description_task.setText("");
-        register_date_task.setText("");
+        register_reminder_name.setText("");
+        register_description_reminder.setText("");
+        register_date_reminder.setText("");
     }
 }

@@ -20,7 +20,6 @@ public class List_element implements Serializable {
                          String type_task, String fecha) {
 
         this.id = id;
-
         this.imageId = imageId;
         this.name = name;
         this.description = description;

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.db.DbHelper;
 import com.example.myapplication.db.DbTask;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -49,10 +51,17 @@ public class Task extends Fragment {
         elements1 = new ArrayList<>();
         elements1= prueba.mostrarTask();
 
-        ListAdd listAdapter =  new ListAdd(elements1, getActivity(), new ListAdd.OnItemClickListener() {
+        ListAdd listAdapter =  new ListAdd(elements1, getActivity(), new ListAdd.OnItemLongClickListener(){
             @Override
-            public void onItemClick(List_element item) {
-                change_status(item);
+            public void onLongClick(List_element item) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Prueba");
+                builder.setMessage("Mensaje");
+                builder.setPositiveButton("Aceptar", null);
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

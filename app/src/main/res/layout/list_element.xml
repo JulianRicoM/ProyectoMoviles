@@ -56,7 +56,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:text="NOMBRE DE LA TAREA"
                     android:textColor="@color/black"
                     android:textSize="19sp"
                     android:textStyle="bold">
@@ -69,7 +68,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
-                    android:text="DESCRIPCIÓN"
                     android:textSize="15sp"
                     android:textStyle="bold">
 
@@ -85,7 +83,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
-                android:text="ESTADO"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_alignParentRight="true">
