@@ -89,9 +89,9 @@ public class ListAddReminders extends RecyclerView.Adapter<ListAddReminders.View
             //<<----------------------------- assign status ------------------------------>>
 
             if (item.getStatus_reminder()) {
-                status.setText("Activo");
+                status.setText("Active");
             } else {
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
 
             //<<----------------------------- assign image ------------------------------>>
@@ -115,9 +115,9 @@ public class ListAddReminders extends RecyclerView.Adapter<ListAddReminders.View
 
         public void change_status(final List_element_reminders item) {
             if (item.getStatus_reminder()) {
-                status.setText("Activo");
+                status.setText("Active");
             } else {
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
         }
 

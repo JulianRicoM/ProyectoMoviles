@@ -25,9 +25,7 @@ public class DbTask extends DbHelper {
 
 
     public long insertarTask(String nombre, String descripcion, String fecha, String typeTask){
-
         long id = 0;
-
         try {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -46,6 +44,11 @@ public class DbTask extends DbHelper {
 
         return id;
     }
+
+
+
+
+
 
     public ArrayList<List_element> mostrarTask(){
         DbHelper dbHelper = new DbHelper(context);
@@ -76,4 +79,77 @@ public class DbTask extends DbHelper {
 
         return listaTask;
     }
+
+
+
+    public List_element verTask(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+
+        List_element list_element = null;
+        Cursor cursorETask = null;
+
+        cursorETask = db.rawQuery("SELECT * FROM " + TABLE_TASK + " WHERE id = " + id + " LIMIT 1", null);
+
+        if(cursorETask.moveToFirst()){
+
+            list_element = new List_element();
+            list_element.setId(cursorETask.getInt(0));
+            list_element.setName(cursorETask.getString(1));
+            list_element.setDescription(cursorETask.getString(2));
+            list_element.setFecha(cursorETask.getString(3));
+            list_element.setType_task(cursorETask.getString(4));
+            list_element.setStatus(true);        }
+
+        cursorETask.close();
+
+        return list_element;
+    }
+
+
+
+    public boolean editarTask(int id,String nombre, String descripcion, String fecha, String typeTask){
+        boolean correcto = false;
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+
+
+            db.execSQL(" UPDATE " + TABLE_TASK + " SET nombre = '"+nombre+"'," +
+                    "descripcion = '"+descripcion+"'," +  "fecha = '"+fecha+"',typeTask = '"+typeTask+"" +
+                    "' WHERE id='"+id+"' ");
+
+            correcto = true;
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
+    public boolean eliminarTask(int id){
+        boolean correcto = false;
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+
+
+            db.execSQL(" DELETE FROM " + TABLE_TASK  + " WHERE id= '"+ id +"'");
+
+            correcto = true;
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,8 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+
+                    /*
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Prueba");
                     builder.setMessage("Mensaje");
@@ -82,6 +85,15 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
                     AlertDialog dialog = builder.create();
                     dialog.show();
+
+                     */
+
+
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, VerActivity.class);
+                    intent.putExtra("ID",list_data.get(getBindingAdapterPosition()).getId());
+                    context.startActivity(intent);
+
                     return true;
                 }
             });
@@ -92,9 +104,9 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
             //<<----------------------------- assign the status ------------------------------>>
 
             if(item.getStatus()){
-                status.setText("Activo");
+                status.setText("Active");
             }else{
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
 
             //<<----------------------------- assign the image ------------------------------>>
@@ -116,9 +128,9 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
         public void change_status(final List_element item){
             if(item.getStatus()){
-                status.setText("Activo");
+                status.setText("Active");
             }else{
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
         }
 
