@@ -4,13 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/arranque"
+    android:background="@drawable/arranque1"
     tools:context=".Splash_screen">
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="115dp"
-        android:layout_height="142dp"
-        app:srcCompat="@drawable/logo_" />
+        android:layout_width="214dp"
+        android:layout_height="172dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="553dp"
+        android:layout_marginEnd="191dp"
+        android:layout_marginBottom="6dp"
+        app:srcCompat="@drawable/logo1" />
 </RelativeLayout>

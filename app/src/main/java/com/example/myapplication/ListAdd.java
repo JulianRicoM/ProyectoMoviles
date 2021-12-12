@@ -104,9 +104,9 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
             //<<----------------------------- assign the status ------------------------------>>
 
             if(item.getStatus()){
-                status.setText("Activo");
+                status.setText("Active");
             }else{
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
 
             //<<----------------------------- assign the image ------------------------------>>
@@ -128,9 +128,9 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
 
         public void change_status(final List_element item){
             if(item.getStatus()){
-                status.setText("Activo");
+                status.setText("Active");
             }else{
-                status.setText("Inactivo");
+                status.setText("Inactive");
             }
         }
 

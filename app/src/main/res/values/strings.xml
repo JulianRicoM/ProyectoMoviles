@@ -9,6 +9,7 @@
     <string name="description_task">Description</string>
     <string name="date_task">Date</string>
     <string name="create_task">Create task</string>
+    <string name="create_reminder">Create reminder</string>
     <string name="add_task">Add task</string>
     <string name="add_reminder">Add reminder</string>
     <string name="reminder_name">Name</string>
