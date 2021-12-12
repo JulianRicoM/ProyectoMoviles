@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myapplication.db.DbReminder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +39,9 @@ public class Reminders extends Fragment {
             }
         });
 
+        DbReminder prueba = new DbReminder(getActivity());
         elements = new ArrayList<>();
-        elements = reminder();
+        elements = prueba.mostrarReminder();
 
         ListAddReminders listAdapter= new ListAddReminders(elements, getActivity(), new ListAddReminders.OnItemLongClickListener() {
             @Override
