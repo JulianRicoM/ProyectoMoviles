@@ -38,6 +38,7 @@ public class EditarActivity extends AppCompatActivity {
     TextView task_date;
     DatePickerDialog.OnDateSetListener setListener;
 
+    Button btna,btnEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,10 @@ public class EditarActivity extends AppCompatActivity {
         register_description_task = findViewById(R.id.register_description_task);
         register_date_task = findViewById(R.id.register_date_task);
 
+        btna = findViewById(R.id.btn_add_task);
+        btna.setVisibility(View.INVISIBLE);
+        btnEliminar = findViewById(R.id.btnBorrar);
+        btnEliminar.setVisibility(View.INVISIBLE);
         //<<-------------------------------- Dropdown -------------------------------->>
 
         autoCompleteItems = findViewById(R.id.Dropdown);

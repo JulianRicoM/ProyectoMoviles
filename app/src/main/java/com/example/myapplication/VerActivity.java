@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
 
@@ -26,7 +28,7 @@ import java.util.Calendar;
 public class VerActivity extends AppCompatActivity {
 
 
-    Button btn;
+    Button btn,btnEliminar;
 
     EditText register_task_name,register_description_task,register_date_task;
 
@@ -51,6 +53,8 @@ public class VerActivity extends AppCompatActivity {
         autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_task = findViewById(R.id.register_description_task);
         register_date_task = findViewById(R.id.register_date_task);
+
+
 
         //<<-------------------------------- Dropdown -------------------------------->>
 
@@ -95,7 +99,7 @@ public class VerActivity extends AppCompatActivity {
 
         //btn = findViewById(R.id.btn_add_task);
         btn = findViewById(R.id.btn_add_task);
-
+        btnEliminar = findViewById(R.id.btnBorrar);
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if(extras == null){
@@ -132,6 +136,27 @@ public class VerActivity extends AppCompatActivity {
             }
         });
 
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(VerActivity.this);
+                builder.setMessage("¿Delete Task?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if( dbTask.eliminarTask(id)){
+                                    lista();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+            }
+        });
 
 
 
@@ -146,5 +171,10 @@ public class VerActivity extends AppCompatActivity {
 
 
 
+
+    }
+    private void lista(){
+        Intent intent = new Intent(this, MainMenu.class);
+        startActivity(intent);
     }
 }

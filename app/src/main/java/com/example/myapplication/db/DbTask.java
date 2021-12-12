@@ -131,4 +131,25 @@ public class DbTask extends DbHelper {
         return correcto;
     }
 
+    public boolean eliminarTask(int id){
+        boolean correcto = false;
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+
+
+            db.execSQL(" DELETE FROM " + TABLE_TASK  + " WHERE id= '"+ id +"'");
+
+            correcto = true;
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
+
 }

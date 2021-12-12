@@ -13,16 +13,6 @@
     
 
 
-	<ImageView
-
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
-        android:layout_gravity="center"
-        android:src="@drawable/registro">
-
-    </ImageView>
 
 
     <TextView
@@ -98,6 +88,17 @@
         android:layout_height="40dp"
         android:layout_marginBottom="40dp"
         android:text="@string/editar"
+        android:textStyle="bold">
+
+    </Button>
+
+    <Button
+
+        android:id="@+id/btnBorrar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/eliminar"
         android:textStyle="bold">
 
     </Button>
