@@ -25,7 +25,7 @@ public class EditarActivity extends AppCompatActivity {
 
     Button btn;
 
-    EditText register_task_name,register_description_task,register_date_task;
+    EditText register_task_name, register_description_task, register_date_task;
     boolean correcto = false;
     List_element list_element;
     int id = 0;
@@ -92,49 +92,50 @@ public class EditarActivity extends AppCompatActivity {
 
         btn = findViewById(R.id.btn_add_task);
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras == null){
+            if (extras == null) {
                 id = Integer.parseInt(null);
 
-            }else{
-                id =extras.getInt("ID");
+            } else {
+                id = extras.getInt("ID");
             }
-        }else {
+        } else {
             id = (int) savedInstanceState.getSerializable("ID");
         }
         DbTask dbTask = new DbTask(EditarActivity.this);
         list_element = dbTask.verTask(id);
 
-        if(list_element != null){
+        if (list_element != null) {
             register_task_name.setText(list_element.getName());
             register_description_task.setText(list_element.getDescription());
-            autoCompleteItems.setText(list_element.getType_task());
             register_date_task.setText(list_element.getFecha());
+
         }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!register_task_name.getText().toString().equals("")){
+                if (!register_task_name.getText().toString().equals("")) {
 
-                    correcto = dbTask.editarTask(id,register_task_name.getText().toString(),register_description_task.getText().toString(),autoCompleteItems.getText().toString(),register_date_task.getText().toString());
+                    correcto = dbTask.editarTask(id, register_task_name.getText().toString(),
+                            register_description_task.getText().toString(),
+                            register_date_task.getText().toString(), autoCompleteItems.getText().toString());
 
-                    if(correcto){
+                    if (correcto) {
                         Toast.makeText(EditarActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
                         verRegistro();
-                    }else{
+                    } else {
                         Toast.makeText(EditarActivity.this, "ERROR AL REGISTRAR CAMBIOS", Toast.LENGTH_LONG).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(EditarActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
     }
-    public void verRegistro(){
-        Intent intent = new Intent(this,VerActivity.class);
-        intent.putExtra("ID",id);
-        startActivity(intent);
+
+    public void verRegistro() {
+        onBackPressed();
     }
 }

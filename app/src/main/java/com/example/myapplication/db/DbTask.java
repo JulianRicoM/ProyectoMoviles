@@ -100,12 +100,7 @@ public class DbTask extends DbHelper {
             list_element.setDescription(cursorETask.getString(2));
             list_element.setFecha(cursorETask.getString(3));
             list_element.setType_task(cursorETask.getString(4));
-            list_element.setStatus(true);
-
-
-
-
-        }
+            list_element.setStatus(true);        }
 
         cursorETask.close();
 
@@ -121,7 +116,10 @@ public class DbTask extends DbHelper {
         try {
 
 
-            db.execSQL(" UPDATE " + TABLE_TASK + " SET nombre = '"+nombre+"',descripcion = '"+descripcion+"',fecha = '"+fecha+"',typeTask = '"+typeTask+"' WHERE id='"+id+"' ");
+            db.execSQL(" UPDATE " + TABLE_TASK + " SET nombre = '"+nombre+"'," +
+                    "descripcion = '"+descripcion+"'," +  "fecha = '"+fecha+"',typeTask = '"+typeTask+"" +
+                    "' WHERE id='"+id+"' ");
+
             correcto = true;
         } catch (Exception ex){
             ex.toString();
