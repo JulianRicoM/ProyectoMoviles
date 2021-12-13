@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,14 +76,12 @@ public class ListAddReminders extends RecyclerView.Adapter<ListAddReminders.View
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Prueba");
-                    builder.setMessage("Mensaje");
-                    builder.setPositiveButton("Aceptar", null);
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, verActivityReminder.class);
+                    intent.putExtra("ID",list_data.get(getBindingAdapterPosition()).getId_reminder());
+                    context.startActivity(intent);
 
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    return false;
+                    return true;
                 }
             });
 

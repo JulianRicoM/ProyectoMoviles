@@ -1,13 +1,13 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,46 +16,42 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-
-import com.example.myapplication.db.DbHelper;
-import com.example.myapplication.db.DbHelperReminder;
 import com.example.myapplication.db.DbReminder;
-
+import com.example.myapplication.db.DbTask;
 
 import java.util.Calendar;
 
-public class AddReminder extends AppCompatActivity {
+public class verActivityReminder extends AppCompatActivity {
 
-    Button btn;
+
+    Button btn,btnEliminar;
 
     EditText register_reminder_name,register_description_reminder,register_date_reminder;
+
+    List_element_reminders list_element_reminders;
+    int id = 0;
 
     //<<---------------- Dropdown ---------------->>
     AutoCompleteTextView autoCompleteItems;
     ArrayAdapter<String> adapterItems;
     String[] items = {"Prorrogable", "Deseable", "Urgente"};
-
     //<<---------------- Calendar ---------------- >>
     TextView reminder_date;
-    DatePickerDialog.OnDateSetListener setListener;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_reminder);
+        setContentView(R.layout.activity_ver_reminder);
 
-        //<<-------------------- interface values assignment ------------------------->>
         register_reminder_name = findViewById(R.id.register_reminder_name);
         autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_reminder = findViewById(R.id.register_description_reminder);
         register_date_reminder = findViewById(R.id.register_date_reminder);
+
+
 
         //<<-------------------------------- Dropdown -------------------------------->>
 
@@ -68,7 +64,6 @@ public class AddReminder extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                Log.d("ejemplo", item);
             }
         });
 
@@ -84,7 +79,7 @@ public class AddReminder extends AppCompatActivity {
         reminder_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminder.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(verActivityReminder.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -96,36 +91,87 @@ public class AddReminder extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
         //<<-------------------------------- Btn_add_task -------------------------------->>
 
 
+        //btn = findViewById(R.id.btn_add_task);
         btn = findViewById(R.id.btn_add_reminder);
+        btnEliminar = findViewById(R.id.btnBorrar);
+        if(savedInstanceState == null){
+            Bundle extras = getIntent().getExtras();
+            if(extras == null){
+                id = Integer.parseInt(null);
+
+            }else{
+                id =extras.getInt("ID");
+            }
+        }else {
+            id = (int) savedInstanceState.getSerializable("ID");
+        }
+        DbReminder dbReminder = new DbReminder(verActivityReminder.this);
+        list_element_reminders = dbReminder.verReminder(id);
+
+        if(list_element_reminders != null){
+            register_reminder_name.setText(list_element_reminders.getName_reminder());
+            register_description_reminder.setText(list_element_reminders.getDescription_reminder());
+            autoCompleteItems.setText(list_element_reminders.getType_reminder());
+            register_date_reminder.setText(list_element_reminders.getFecha_reminder());
+            //btn.setVisibility(View.INVISIBLE);
+
+            register_reminder_name.setInputType(InputType.TYPE_NULL);
+            register_description_reminder.setInputType(InputType.TYPE_NULL);
+            autoCompleteItems.setInputType(InputType.TYPE_NULL);
+            register_date_reminder.setInputType(InputType.TYPE_NULL);
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbHelperReminder dbHelper = new DbHelperReminder(AddReminder.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-                DbReminder dbReminder = new DbReminder(AddReminder.this);
-                long id = dbReminder.insertarReminder(String.valueOf(register_reminder_name.getText()),
-                        String.valueOf(register_description_reminder.getText()),
-                        String.valueOf(reminder_date.getText()),
-                        String.valueOf(autoCompleteItems.getText()));
-
-                onBackPressed();
-                //Intent browse = new Intent(AddReminder.this, Reminders.class);
-                //startActivity(browse);
-
+                Intent intent = new Intent(verActivityReminder.this, EditarActivityReminder.class);
+                intent.putExtra("ID",id);
+                startActivity(intent);
             }
         });
 
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(verActivityReminder.this);
+                builder.setMessage("¿Delete Task?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if( dbReminder.eliminarReminder(id)){
+                                    lista();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-    private void limpiar(){
-        register_reminder_name.setText("");
-        register_description_reminder.setText("");
-        register_date_reminder.setText("");
+    private void lista(){
+        Intent intent = new Intent(this, MainMenu.class);
+        startActivity(intent);
     }
 }

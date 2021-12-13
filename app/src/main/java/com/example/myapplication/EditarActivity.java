@@ -51,7 +51,7 @@ public class EditarActivity extends AppCompatActivity {
         register_date_task = findViewById(R.id.register_date_task);
 
         btna = findViewById(R.id.btn_add_task);
-        btna.setVisibility(View.INVISIBLE);
+
         btnEliminar = findViewById(R.id.btnBorrar);
         btnEliminar.setVisibility(View.INVISIBLE);
         //<<-------------------------------- Dropdown -------------------------------->>

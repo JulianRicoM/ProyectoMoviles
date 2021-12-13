@@ -1,11 +1,7 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.DnsResolver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,46 +13,48 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-
-import com.example.myapplication.db.DbHelper;
-import com.example.myapplication.db.DbHelperReminder;
 import com.example.myapplication.db.DbReminder;
-
+import com.example.myapplication.db.DbTask;
 
 import java.util.Calendar;
 
-public class AddReminder extends AppCompatActivity {
+public class EditarActivityReminder extends AppCompatActivity {
+
 
     Button btn;
 
     EditText register_reminder_name,register_description_reminder,register_date_reminder;
+    boolean correcto = false;
+    List_element_reminders list_element_reminders;
+    int id = 0;
 
     //<<---------------- Dropdown ---------------->>
     AutoCompleteTextView autoCompleteItems;
     ArrayAdapter<String> adapterItems;
     String[] items = {"Prorrogable", "Deseable", "Urgente"};
-
     //<<---------------- Calendar ---------------- >>
     TextView reminder_date;
     DatePickerDialog.OnDateSetListener setListener;
 
+    Button btna,btnEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_reminder);
+        setContentView(R.layout.activity_ver_reminder);
 
-        //<<-------------------- interface values assignment ------------------------->>
         register_reminder_name = findViewById(R.id.register_reminder_name);
         autoCompleteItems = findViewById(R.id.Dropdown);
         register_description_reminder = findViewById(R.id.register_description_reminder);
         register_date_reminder = findViewById(R.id.register_date_reminder);
 
+        btna = findViewById(R.id.btn_add_reminder);
+
+        btnEliminar = findViewById(R.id.btnBorrar);
+        btnEliminar.setVisibility(View.INVISIBLE);
         //<<-------------------------------- Dropdown -------------------------------->>
 
         autoCompleteItems = findViewById(R.id.Dropdown);
@@ -84,7 +82,7 @@ public class AddReminder extends AppCompatActivity {
         reminder_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminder.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditarActivityReminder.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -97,35 +95,55 @@ public class AddReminder extends AppCompatActivity {
             }
         });
 
-
         //<<-------------------------------- Btn_add_task -------------------------------->>
 
 
         btn = findViewById(R.id.btn_add_reminder);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                id = Integer.parseInt(null);
+
+            } else {
+                id = extras.getInt("ID");
+            }
+        } else {
+            id = (int) savedInstanceState.getSerializable("ID");
+        }
+        DbReminder dbReminder = new DbReminder(EditarActivityReminder.this);
+        list_element_reminders = dbReminder.verReminder(id);
+
+        if (list_element_reminders != null) {
+            register_reminder_name.setText(list_element_reminders.getName_reminder());
+            register_description_reminder.setText(list_element_reminders.getDescription_reminder());
+            register_date_reminder.setText(list_element_reminders.getFecha_reminder());
+
+        }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbHelperReminder dbHelper = new DbHelperReminder(AddReminder.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                if (!register_reminder_name.getText().toString().equals("")) {
 
-                DbReminder dbReminder = new DbReminder(AddReminder.this);
-                long id = dbReminder.insertarReminder(String.valueOf(register_reminder_name.getText()),
-                        String.valueOf(register_description_reminder.getText()),
-                        String.valueOf(reminder_date.getText()),
-                        String.valueOf(autoCompleteItems.getText()));
+                    correcto = dbReminder.editarReminder(id, register_reminder_name.getText().toString(),
+                            register_description_reminder.getText().toString(),
+                            register_date_reminder.getText().toString(), autoCompleteItems.getText().toString());
 
-                onBackPressed();
-                //Intent browse = new Intent(AddReminder.this, Reminders.class);
-                //startActivity(browse);
+                    if (correcto) {
+                        Toast.makeText(EditarActivityReminder.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
+                        verRegistro();
+                    } else {
+                        Toast.makeText(EditarActivityReminder.this, "ERROR AL REGISTRAR CAMBIOS", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(EditarActivityReminder.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
-
     }
-    private void limpiar(){
-        register_reminder_name.setText("");
-        register_description_reminder.setText("");
-        register_date_reminder.setText("");
+
+    public void verRegistro() {
+        onBackPressed();
     }
 }

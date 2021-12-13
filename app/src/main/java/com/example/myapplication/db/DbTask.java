@@ -1,5 +1,4 @@
 package com.example.myapplication.db;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.ContentObservable;
@@ -12,17 +11,13 @@ import com.example.myapplication.List_element;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class DbTask extends DbHelper {
     Context context;
 
     public DbTask(@Nullable Context context) {
-
         super(context);
         this.context = context;
     }
-
-
 
     public long insertarTask(String nombre, String descripcion, String fecha, String typeTask){
         long id = 0;
@@ -44,12 +39,6 @@ public class DbTask extends DbHelper {
 
         return id;
     }
-
-
-
-
-
-
     public ArrayList<List_element> mostrarTask(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

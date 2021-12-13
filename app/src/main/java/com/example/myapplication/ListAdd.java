@@ -22,8 +22,6 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
     private Context context;
     final ListAdd.OnItemLongClickListener listener;
 
-
-
     public interface OnItemLongClickListener{
         void onLongClick(List_element item);
     }
@@ -76,18 +74,6 @@ public class ListAdd extends RecyclerView.Adapter<ListAdd.ViewHolder> {
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
-                    /*
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Prueba");
-                    builder.setMessage("Mensaje");
-                    builder.setPositiveButton("Aceptar", null);
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
-                     */
-
 
                     Context context = v.getContext();
                     Intent intent = new Intent(context, VerActivity.class);
