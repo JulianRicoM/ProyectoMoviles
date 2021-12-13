@@ -16,6 +16,8 @@
     <string name="description_reminder">Description</string>
     <string name="editar">Edit task</string>
     <string name="eliminar">Delete task</string>
+    <string name="editarReminder">Edit reminder</string>
+    <string name="eliminarReminder">Delete reminder</string>
 
 
     <string-array name="type_task">
